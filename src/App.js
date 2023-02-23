@@ -5,27 +5,29 @@ import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
 import Date from "./components/Date";
 import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 import Workers from "./components/Wokers";
 import WorkerDetails from "./components/WorkerDetails";
 
 function App() {
   const [backend, setBackend] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:8080/workers")
-  //     .then((res) => res.json())
-  //     .then((data) => setBackend(data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    fetch("http://localhost:8080/workers")
+      .then((res) => res.json())
+      .then((data) => setBackend(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="App">
-      {/* {backend.length
+      {backend.length
         ? backend.map((simpleWorker) => <p>{simpleWorker.first_name}</p>)
-        : "...loading"} */}
+        : "...loading"}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/workers" element={<Workers />} />
         <Route path="/workers/:id" element={<WorkerDetails />} />
         <Route path="/workers/:id/date" element={<Date />} />

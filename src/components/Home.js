@@ -8,6 +8,8 @@ export default function Home() {
         <br />
         <NavLink to="/login">Login</NavLink>
         <br />
+        <NavLink to="/sign-up">SignUp</NavLink>
+        <br />
         <NavLink to="/contact">Contact</NavLink>
         <br />
         <NavLink to="/about-us">AboutUs</NavLink>
