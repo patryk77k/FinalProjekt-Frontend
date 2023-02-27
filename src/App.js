@@ -5,6 +5,7 @@ import Contact from "./components/Contact";
 import Date from "./components/Date";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import Form from "./components/Form";
 import Workers from "./components/Workers";
 import WorkerDetails from "./components/WorkerDetails";
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/form" element={<Form />} />
         <Route path="/workers" element={<Workers />} />
         <Route path="/workers/:id" element={<WorkerDetails />} />
         <Route path="/workers/:id/date" element={<Date />} />

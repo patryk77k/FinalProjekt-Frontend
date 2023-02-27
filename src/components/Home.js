@@ -8,84 +8,81 @@ export default function Home() {
   const [selectPLZ, setSelectPLZ] = useState("");
 
   useEffect(() => {
+    fetch("http://localhost:8080/workers")
+      .then((res) => res.json())
+      .then((data) => setBackend(data))
+      .catch((err) => console.log(err));
+  }, [selectAddress, selectHandwerker, selectPLZ]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     fetch(
       `http://localhost:8080/workers?address=${selectAddress}&plz=${selectPLZ}&profession=${selectHandwerker}`
     )
       .then((res) => res.json())
       .then((data) => setBackend(data))
       .catch((err) => console.log(err));
-  }, [selectAddress, selectHandwerker, selectPLZ]);
-  console.log(selectPLZ);
-  console.log(
-    backend.filter((singleWorker) =>
-      singleWorker.first_name.toLowerCase().includes(selectHandwerker)
-    )
-  );
+  };
 
   return (
     <div className="app">
       <h2>Home</h2>
       <div className="navlink">
         <nav>
-          <NavLink to="login">Login</NavLink>
-          <br />
-          <NavLink to="sign-up">SignUp</NavLink>
-          <br />
-          <NavLink to="about-us">AboutUs</NavLink>
-          <br />
-          <NavLink to="contact">Contact</NavLink>
+          <p>
+            <NavLink to="login">Login</NavLink>
+          </p>
+          <p>
+            <NavLink to="sign-up">SignUp</NavLink>
+          </p>
+          <p>
+            <NavLink to="form">Form</NavLink>
+          </p>
+          <p>
+            <NavLink to="about-us">AboutUs</NavLink>
+          </p>
+          <p>
+            <NavLink to="contact">Contact</NavLink>
+          </p>
         </nav>
       </div>
       <br />
       <div className="suchfeld">
-        <input
-          type="text"
-          placeholder="Select Handwerker"
-          value={selectHandwerker}
-          onChange={(e) => setSelectHandwerker(e.target.value)}
-        ></input>
-        <input
-          type="text"
-          placeholder="Select Address"
-          value={selectAddress}
-          onChange={(e) => setSelectAddress(e.target.value)}
-        ></input>
-        <input
-          type="text"
-          placeholder="Select PLZ"
-          value={selectPLZ}
-          onChange={(e) => setSelectPLZ(e.target.value)}
-        ></input>
-        <NavLink to="workers">
-          <button>Suche Handwerker!</button>
-        </NavLink>
+        <form>
+          <input
+            type="text"
+            placeholder="select a handwerker.."
+            value={selectHandwerker}
+            onChange={(e) => setSelectHandwerker(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="select a address.."
+            value={selectAddress}
+            onChange={(e) => setSelectAddress(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="select a PLZ.."
+            value={selectPLZ}
+            onChange={(e) => setSelectPLZ(e.target.value)}
+          />
+
+          <button onClick={handleSubmit}>
+            <NavLink to="/workers">Search</NavLink>
+          </button>
+        </form>
       </div>
 
-      {backend.length
-        ? backend
-            .filter((singleWorker) =>
-              singleWorker.profession.toLowerCase().includes(selectHandwerker)
-            )
-            .map((singleWorker) => (
-              <p key={singleWorker._id}>{singleWorker.profession}</p>
-            ))
-        : "...loading"}
-      <br />
-      {backend.length
-        ? backend
-            .filter((singleWorker) =>
-              singleWorker.address.toLowerCase().includes(selectAddress)
-            )
-            .map((singleWorker) => (
-              <p key={singleWorker._id}>{singleWorker.address}</p>
-            ))
-        : "...loading"}
-      <br />
-      {/* {backend.length
-        ? backend
-            .filter((singleWorker) => singleWorker.plz.includes(selectPLZ))
-            .map((singleWorker) => <p>{singleWorker.plz}</p>)
-        : "...loading"} */}
+      {backend.length &&
+        backend.map((handwerker) => (
+          <div key={handwerker._id}>
+            <p>
+              {handwerker.profession} {handwerker.first_name}{" "}
+              {handwerker.last_name}, {handwerker.address} {handwerker.plz}
+            </p>
+          </div>
+        ))}
     </div>
   );
 }
