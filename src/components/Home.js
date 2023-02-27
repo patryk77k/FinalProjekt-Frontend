@@ -8,11 +8,13 @@ export default function Home() {
   const [selectPLZ, setSelectPLZ] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8080/workers")
+    fetch(
+      `http://localhost:8080/workers?address=${selectAddress}&plz=${selectPLZ}&profession=${selectHandwerker}`
+    )
       .then((res) => res.json())
       .then((data) => setBackend(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [selectAddress, selectHandwerker, selectPLZ]);
   console.log(selectPLZ);
   console.log(
     backend.filter((singleWorker) =>
@@ -64,7 +66,9 @@ export default function Home() {
             .filter((singleWorker) =>
               singleWorker.profession.toLowerCase().includes(selectHandwerker)
             )
-            .map((singleWorker) => <p>{singleWorker.profession}</p>)
+            .map((singleWorker) => (
+              <p key={singleWorker._id}>{singleWorker.profession}</p>
+            ))
         : "...loading"}
       <br />
       {backend.length
@@ -72,7 +76,9 @@ export default function Home() {
             .filter((singleWorker) =>
               singleWorker.address.toLowerCase().includes(selectAddress)
             )
-            .map((singleWorker) => <p>{singleWorker.address}</p>)
+            .map((singleWorker) => (
+              <p key={singleWorker._id}>{singleWorker.address}</p>
+            ))
         : "...loading"}
       <br />
       {/* {backend.length
