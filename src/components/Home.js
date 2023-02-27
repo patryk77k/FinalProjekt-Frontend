@@ -7,18 +7,35 @@ export default function Home() {
   const [selectAddress, setSelectAddress] = useState("");
   const [selectPLZ, setSelectPLZ] = useState("");
 
-  useEffect(() => {
-    fetch("http://localhost:8080/workers")
+  // useEffect(() => {
+  //   fetch("http://localhost:8080/workers")
+  //     .then((res) => res.json())
+  //     .then((data) => setBackend(data))
+  //     .catch((err) => console.log(err));
+  // }, []);
+  // console.log(selectPLZ);
+  // console.log(
+  //   backend.filter((singleWorker) =>
+  //     singleWorker.first_name.toLowerCase().includes(selectHandwerker)
+  //   )
+  // );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(
+      `http://localhost:8080/workers?address=${selectAddress}&plz=${selectPLZ}&profession=${selectHandwerker}`
+    )
       .then((res) => res.json())
       .then((data) => setBackend(data))
       .catch((err) => console.log(err));
-  }, []);
-  console.log(selectPLZ);
-  console.log(
-    backend.filter((singleWorker) =>
-      singleWorker.first_name.toLowerCase().includes(selectHandwerker)
-    )
-  );
+  };
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/workers`)
+      .then((res) => res.json())
+      .then((data) => setBackend(data))
+      .catch((err) => console.log(err));
+  }, [selectAddress, selectPLZ, selectHandwerker]);
 
   return (
     <div className="app">
@@ -36,30 +53,45 @@ export default function Home() {
       </div>
       <br />
       <div className="suchfeld">
-        <input
-          type="text"
-          placeholder="Select Handwerker"
-          value={selectHandwerker}
-          onChange={(e) => setSelectHandwerker(e.target.value)}
-        ></input>
-        <input
-          type="text"
-          placeholder="Select Address"
-          value={selectAddress}
-          onChange={(e) => setSelectAddress(e.target.value)}
-        ></input>
-        <input
-          type="text"
-          placeholder="Select PLZ"
-          value={selectPLZ}
-          onChange={(e) => setSelectPLZ(e.target.value)}
-        ></input>
-        <NavLink to="workers">
+        <form action="">
+          <input
+            type="text"
+            placeholder="Select Handwerker"
+            value={selectHandwerker}
+            onChange={(e) => setSelectHandwerker(e.target.value)}
+          ></input>
+          <input
+            type="text"
+            placeholder="Select Address"
+            value={selectAddress}
+            onChange={(e) => setSelectAddress(e.target.value)}
+          ></input>
+          <input
+            type="text"
+            placeholder="Select PLZ"
+            value={selectPLZ}
+            onChange={(e) => setSelectPLZ(e.target.value)}
+          ></input>
+          <button onClick={handleSubmit}>Search</button>
+        </form>
+        {/* <NavLink to="workers">
           <button>Suche Handwerker!</button>
-        </NavLink>
+        </NavLink> */}
       </div>
 
-      {backend.length
+      {backend.length &&
+        backend.map((handwerker) => (
+          <div>
+            <p> {handwerker.profession}</p>
+            <p>
+              {" "}
+              {handwerker.first_name} {handwerker.last_name},{" "}
+              {handwerker.address}
+            </p>
+          </div>
+        ))}
+
+      {/* {backend.length
         ? backend
             .filter((singleWorker) =>
               singleWorker.profession.toLowerCase().includes(selectHandwerker)
@@ -74,7 +106,7 @@ export default function Home() {
             )
             .map((singleWorker) => <p>{singleWorker.address}</p>)
         : "...loading"}
-      <br />
+      <br /> */}
       {/* {backend.length
         ? backend
             .filter((singleWorker) => singleWorker.plz.includes(selectPLZ))
