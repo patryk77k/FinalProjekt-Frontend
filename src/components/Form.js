@@ -3,8 +3,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 export default function Form() {
-  const [createWorker, setCreateWorker] = useState("");
-  const [backend, setBackend] = useState({
+  const [createWorker, setCreateWorker] = useState({
     first_name: "",
     last_name: "",
     login: "",
@@ -16,6 +15,7 @@ export default function Form() {
     address: "",
     plz: "",
   });
+
   //   useEffect(() => {
   //     fetch("http://localhost:8080/workers")
   //       .then((res) => res.json())
@@ -36,7 +36,7 @@ export default function Form() {
     e.preventDefault();
 
     axios
-      .post("/workers", createWorker)
+      .post("/", createWorker)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
