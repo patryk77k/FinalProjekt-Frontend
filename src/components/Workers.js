@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
-export default function Contact() {
+export default function Workers() {
   return (
     <div>
-      <h2>Contact</h2>
+      <h2>Select a Handwerker!</h2>
       <nav>
         <NavLink to="/">Home</NavLink>
+        <br />
+        <NavLink to="/workers/:id">WorkerDetails</NavLink>
       </nav>
     </div>
   );

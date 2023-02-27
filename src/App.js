@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
-import { NavLink, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
 import Date from "./components/Date";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Workers from "./components/Wokers";
+import Workers from "./components/Workers";
 import WorkerDetails from "./components/WorkerDetails";
 
-
-
 function App() {
-  
   return (
     <div className="App">
-      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
