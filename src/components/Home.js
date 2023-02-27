@@ -62,10 +62,24 @@ export default function Home() {
       {backend.length
         ? backend
             .filter((singleWorker) =>
-              singleWorker.first_name.toLowerCase().includes(selectHandwerker)
+              singleWorker.profession.toLowerCase().includes(selectHandwerker)
             )
-            .map((singleWorker) => <p>{singleWorker.first_name}</p>)
+            .map((singleWorker) => <p>{singleWorker.profession}</p>)
         : "...loading"}
+      <br />
+      {backend.length
+        ? backend
+            .filter((singleWorker) =>
+              singleWorker.address.toLowerCase().includes(selectAddress)
+            )
+            .map((singleWorker) => <p>{singleWorker.address}</p>)
+        : "...loading"}
+      <br />
+      {/* {backend.length
+        ? backend
+            .filter((singleWorker) => singleWorker.plz.includes(selectPLZ))
+            .map((singleWorker) => <p>{singleWorker.plz}</p>)
+        : "...loading"} */}
     </div>
   );
 }
