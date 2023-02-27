@@ -14,6 +14,12 @@ export default function Home() {
       .catch((err) => console.log(err));
   }, []);
   console.log(selectPLZ);
+  console.log(
+    backend.filter((singleWorker) =>
+      singleWorker.first_name.toLowerCase().includes(selectHandwerker)
+    )
+  );
+
   return (
     <div className="app">
       <h2>Home</h2>
@@ -54,7 +60,11 @@ export default function Home() {
       </div>
 
       {backend.length
-        ? backend.map((simpleWorker) => <p>{simpleWorker.first_name}</p>)
+        ? backend
+            .filter((singleWorker) =>
+              singleWorker.first_name.toLowerCase().includes(selectHandwerker)
+            )
+            .map((singleWorker) => <p>{singleWorker.first_name}</p>)
         : "...loading"}
     </div>
   );
