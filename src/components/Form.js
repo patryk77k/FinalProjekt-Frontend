@@ -36,7 +36,7 @@ export default function Form() {
     e.preventDefault();
 
     axios
-      .post("/", createWorker)
+      .post("/workers", createWorker)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };

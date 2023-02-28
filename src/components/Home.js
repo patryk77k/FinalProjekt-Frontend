@@ -68,9 +68,7 @@ export default function Home() {
             onChange={(e) => setSelectPLZ(e.target.value)}
           />
 
-          <button onClick={handleSubmit}>
-            <NavLink to="/workers">Search</NavLink>
-          </button>
+          <button onClick={handleSubmit}>Search</button>
         </form>
       </div>
 
