@@ -23,13 +23,7 @@ export default function Form() {
   //       .catch((err) => console.log(err));
   //   }, []);
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCreateWorker((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+    setCreateWorker({ ...createWorker, [e.target.name]: e.target.value });
   };
 
   const handleClick = (e) => {
