@@ -8,10 +8,10 @@ export default function Home() {
   const [selectPLZ, setSelectPLZ] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8080/workers")
+    fetch("https://finalprojekt-backend.onrender.com/workers")
       .then((res) => res.json())
       .then((data) => setBackend(data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   }, [selectAddress, selectHandwerker, selectPLZ]);
 
   const handleSubmit = (e) => {
@@ -23,6 +23,8 @@ export default function Home() {
       .then((data) => setBackend(data))
       .catch((err) => console.log(err));
   };
+
+  console.log(backend);
 
   return (
     <div className="app">

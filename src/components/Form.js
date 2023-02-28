@@ -16,21 +16,16 @@ export default function Form() {
     plz: "",
   });
 
-  //   useEffect(() => {
-  //     fetch("http://localhost:8080/workers")
-  //       .then((res) => res.json())
-  //       .then((data) => console.log(data))
-  //       .catch((err) => console.log(err));
-  //   }, []);
   const handleChange = (e) => {
     setCreateWorker({ ...createWorker, [e.target.name]: e.target.value });
   };
 
   const handleClick = (e) => {
     e.preventDefault();
+    console.log("state", createWorker);
 
     axios
-      .post("/workers", createWorker)
+      .post("https://finalprojekt-backend.onrender.com/workers", createWorker)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -103,7 +98,14 @@ export default function Form() {
             value={createWorker.plz}
             onChange={handleChange}
           />
-          v<button onClick={handleClick}>Create new</button>
+              <input
+            name="address"
+            type="text"
+            placeholder="address"
+            value={createWorker.address}
+            onChange={handleChange}
+          />
+          <button onClick={handleClick}>Create new</button>
         </form>
       </nav>
     </dev>
