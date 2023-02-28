@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp";
 import Form from "./components/Form";
 import Workers from "./components/Workers";
 import WorkerDetails from "./components/WorkerDetails";
+import Created from "./components/Created";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/form" element={<Form />} />
-        <Route path="/workers" element={<Workers />} />
+        <Route path="/form/created" element={<Form />} />
+        <Route path="/workers" element={<Created />} />
         <Route path="/workers/:id" element={<WorkerDetails />} />
         <Route path="/workers/:id/date" element={<Date />} />
         <Route path="/about-us" element={<AboutUs />} />
