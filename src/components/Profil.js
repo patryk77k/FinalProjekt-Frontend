@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// CREATE NEW HANDWERKER
+
 export default function Form() {
   const navigate = useNavigate();
   const [createWorker, setCreateWorker] = useState({
@@ -30,7 +32,7 @@ export default function Form() {
       .post("https://finalprojekt-backend.onrender.com/workers", createWorker)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    navigate("https://finalprojekt-frontend.onrender.com/contact");
+    navigate("created");
   };
 
   return (

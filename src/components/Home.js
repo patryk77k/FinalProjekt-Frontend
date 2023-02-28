@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -8,6 +9,8 @@ export default function Home() {
   const [selectHandwerker, setSelectHandwerker] = useState("");
   const [selectAddress, setSelectAddress] = useState("");
   const [selectPLZ, setSelectPLZ] = useState("");
+
+  //SEARCH BAR
 
   useEffect(() => {
     fetch("https://finalprojekt-backend.onrender.com/workers")
@@ -24,9 +27,17 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => setBackend(data))
       .catch((err) => console.log(err));
+    //navigate("workers");
   };
 
-  console.log(backend);
+  //DELETE HANDWERKER
+  const deletePost = (id) => {
+    axios
+      .delete(`https://finalprojekt-backend.onrender.com/workers/${id}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    window.location.reload();
+  };
 
   return (
     <div className="app">
@@ -82,6 +93,7 @@ export default function Home() {
             <p>
               {handwerker.profession} {handwerker.first_name}{" "}
               {handwerker.last_name}, {handwerker.address} {handwerker.plz}
+              <button onClick={() => deletePost(handwerker._id)}>Delete</button>
             </p>
           </div>
         ))}
