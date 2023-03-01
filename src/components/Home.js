@@ -139,7 +139,7 @@ export default function Home() {
           <div key={handwerker._id}>
             <p>
               <Link
-                to={`https://finalprojekt-backend.onrender.com/workers/${handwerker._id}`}
+                to={`http://finalprojekt-frontend.onrender.com/workers/${handwerker._id}`}
               >
                 {handwerker.profession} {handwerker.first_name}{" "}
                 {handwerker.last_name}, {handwerker.address} {handwerker.plz}
