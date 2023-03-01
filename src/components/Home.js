@@ -138,9 +138,7 @@ export default function Home() {
         backend.map((handwerker) => (
           <div key={handwerker._id}>
             <p>
-              <Link
-                to={`http://finalprojekt-frontend.onrender.com/workers/${handwerker._id}`}
-              >
+              <Link to={`http://localhost:3000/workers/${handwerker._id}`}>
                 {handwerker.profession} {handwerker.first_name}{" "}
                 {handwerker.last_name}, {handwerker.address} {handwerker.plz}
               </Link>

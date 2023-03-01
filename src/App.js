@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
@@ -11,16 +12,41 @@ import WorkerDetails from "./components/WorkerDetails";
 import Created from "./components/Created";
 
 function App() {
+  const [backend, setBackend] = useState([]);
+  const [selectHandwerker, setSelectHandwerker] = useState("");
+  const [selectAddress, setSelectAddress] = useState("");
+  const [selectPLZ, setSelectPLZ] = useState("");
+
+  useEffect(() => {
+    fetch("https://finalprojekt-backend.onrender.com/workers")
+      .then((res) => res.json())
+      .then((data) => setBackend(data))
+      .catch((err) => console.log(err.message));
+  }, [selectAddress, selectHandwerker, selectPLZ]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(
+      `http://localhost:8080/workers?address=${selectAddress}&plz=${selectPLZ}&profession=${selectHandwerker}`
+    )
+      .then((res) => res.json())
+      .then((data) => setBackend(data))
+      .catch((err) => console.log(err));
+    //navigate("workers");
+  };
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home backend={backend} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/profil/created" element={<Created />} />
         <Route path="/workers" element={<Workers />} />
-        <Route path="/workers/:id" element={<WorkerDetails />} />
+        <Route
+          path="/workers/:id"
+          element={<WorkerDetails backend={backend} />}
+        />
         <Route path="/workers/:id/date" element={<Date />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
