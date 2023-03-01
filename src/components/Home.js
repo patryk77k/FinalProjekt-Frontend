@@ -9,6 +9,7 @@ export default function Home() {
   const [selectHandwerker, setSelectHandwerker] = useState("");
   const [selectAddress, setSelectAddress] = useState("");
   const [selectPLZ, setSelectPLZ] = useState("");
+  const [listOfFriends, setListOfFriends] = useState([]);
 
   //SEARCH BAR
 
@@ -38,7 +39,53 @@ export default function Home() {
       .catch((err) => console.log(err));
     window.location.reload();
   };
+  //UPDATE HANDWERKER
+  const updatePost = (id) => {
+    const first_name = prompt("Enter a new first_name:");
+    const last_name = prompt("Enter a last_name:");
+    const login = prompt("Enter a login:");
+    const password = prompt("Enter a password:");
+    const profession = prompt("Enter a profession:");
+    const experience = prompt("Enter a experience:");
+    const availibility = prompt("Enter a availibility:");
+    const price = prompt("Enter a price:");
+    const address = prompt("Enter a address:");
+    const plz = prompt("Enter a plz:");
 
+    axios
+      .put(`https://finalprojekt-backend.onrender.com/workers/${id}`, {
+        first_name: first_name,
+        last_name: last_name,
+        login: login,
+        password: password,
+        profession: profession,
+        experience: experience,
+        availibility: availibility,
+        price: price,
+        address: address,
+        plz: plz,
+      })
+      .then(() => {
+        setListOfFriends(
+          listOfFriends.map((handwerker) => {
+            return handwerker._id == id
+              ? {
+                  first_name: first_name,
+                  last_name: last_name,
+                  login: login,
+                  password: password,
+                  profession: profession,
+                  experience: experience,
+                  availibility: availibility,
+                  price: price,
+                  address: address,
+                  plz: plz,
+                }
+              : handwerker;
+          })
+        );
+      });
+  };
   return (
     <div className="app">
       <h2>Home</h2>
@@ -94,6 +141,7 @@ export default function Home() {
               {handwerker.profession} {handwerker.first_name}{" "}
               {handwerker.last_name}, {handwerker.address} {handwerker.plz}
               <button onClick={() => deletePost(handwerker._id)}>Delete</button>
+              <button onClick={() => updatePost(handwerker._id)}>Update</button>
             </p>
           </div>
         ))}
