@@ -10,6 +10,7 @@ import Profil from "./components/Profil";
 import Workers from "./components/Workers";
 import WorkerDetails from "./components/WorkerDetails";
 import Created from "./components/Created";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [backend, setBackend] = useState([]);
@@ -24,6 +25,8 @@ function App() {
       .catch((err) => console.log(err.message));
   }, [selectAddress, selectHandwerker, selectPLZ]);
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(
@@ -32,7 +35,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => setBackend(data))
       .catch((err) => console.log(err));
-    //navigate("workers");
+    
   };
   return (
     <div className="App">
@@ -42,7 +45,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/profil/created" element={<Created />} />
-        <Route path="/workers" element={<Workers />} />
+        <Route path="/workers" element={<Workers backend={backend} />} />
         <Route
           path="/workers/:id"
           element={<WorkerDetails backend={backend} />}

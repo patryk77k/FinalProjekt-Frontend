@@ -28,7 +28,8 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => setBackend(data))
       .catch((err) => console.log(err));
-    //navigate("workers");
+
+    //navigate("/workers");
   };
 
   //DELETE HANDWERKER
