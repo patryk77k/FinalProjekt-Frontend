@@ -1,7 +1,4 @@
-import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 export default function Workers({ backend, searchResult }) {
   console.log(backend);
@@ -16,8 +13,6 @@ export default function Workers({ backend, searchResult }) {
                 {handwerker.profession} {handwerker.first_name}{" "}
                 {handwerker.last_name}, {handwerker.address} {handwerker.plz}
               </Link>
-              {/* <button onClick={() => deletePost(handwerker._id)}>Delete</button>
-              <button onClick={() => updatePost(handwerker._id)}>Update</button> */}
             </p>
           </div>
         ))}

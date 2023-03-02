@@ -20,9 +20,6 @@ function App() {
     selectPLZ: "",
   });
   const [searchResult, setSearchResult] = useState([]);
-  // const [selectHandwerker, setSelectHandwerker] = useState("");
-  // const [selectAddress, setSelectAddress] = useState("");
-  // const [selectPLZ, setSelectPLZ] = useState("");
 
   useEffect(() => {
     fetch("https://finalprojekt-backend.onrender.com/workers")
