@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function Workers({ backend }) {
+export default function Workers({ backend, searchResult }) {
   console.log(backend);
   return (
     <div>
       <h2>Select a Handwerker!</h2>
-      {backend.length &&
-        backend.map((handwerker) => (
+      {searchResult.length &&
+        searchResult.map((handwerker) => (
           <div key={handwerker._id}>
             <p>
               <Link to={`http://localhost:3000/workers/${handwerker._id}`}>

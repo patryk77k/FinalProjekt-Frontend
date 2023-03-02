@@ -1,37 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import AppBar from "./AppBar";
 import axios from "axios";
+import Photo from "./Photo";
 
-export default function Home() {
+export default function Home({ backend, form, setForm, setSearchResult }) {
   const navigate = useNavigate();
-  const [backend, setBackend] = useState([]);
-  const [selectHandwerker, setSelectHandwerker] = useState("");
-  const [selectAddress, setSelectAddress] = useState("");
-  const [selectPLZ, setSelectPLZ] = useState("");
+  // const [backend, setBackend] = useState([]);
+  // const [selectHandwerker, setSelectHandwerker] = useState("");
+  // const [selectAddress, setSelectAddress] = useState("");
+  // const [selectPLZ, setSelectPLZ] = useState("");
   // const [listOfFriends, setListOfFriends] = useState([]);
 
   //SEARCH BAR
 
-  useEffect(() => {
-    fetch("https://finalprojekt-backend.onrender.com/workers")
-      .then((res) => res.json())
-      .then((data) => setBackend(data))
-      .catch((err) => console.log(err.message));
-  }, [selectAddress, selectHandwerker, selectPLZ]);
+  // useEffect(() => {
+  //   fetch("https://finalprojekt-backend.onrender.com/workers")
+  //     .then((res) => res.json())
+  //     .then((data) => setBackend(data))
+  //     .catch((err) => console.log(err.message));
+  // }, [selectAddress, selectHandwerker, selectPLZ]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(
-      `http://localhost:8080/workers?address=${selectAddress}&plz=${selectPLZ}&profession=${selectHandwerker}`
+      `http://localhost:8080/workers?address=${form.selectAddress}&plz=${form.selectPLZ}&profession=${form.selectHandwerker}`
     )
       .then((res) => res.json())
-      .then((data) => setBackend(data))
+      .then((data) => {
+        setSearchResult(data);
+        navigate("/workers");
+      })
+
       .catch((err) => console.log(err));
-
-    //navigate("/workers");
   };
-
+  const handleChange = (e) => {
+    setForm((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
   //DELETE HANDWERKER
   // const deletePost = (id) => {
   //   axios
@@ -89,7 +100,10 @@ export default function Home() {
   //}
   return (
     <div className="app">
+      <AppBar />
+
       <h2>Home</h2>
+      <Photo />
       <div className="navlink">
         <nav>
           <p>
@@ -111,27 +125,30 @@ export default function Home() {
       </div>
       <br />
       <div className="suchfeld">
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
+            name="selectHandwerker"
             type="text"
             placeholder="select a handwerker.."
-            value={selectHandwerker}
-            onChange={(e) => setSelectHandwerker(e.target.value)}
+            value={form.selectHandwerker}
+            onChange={handleChange}
           />
           <input
+            name="selectAddress"
             type="text"
             placeholder="select a address.."
-            value={selectAddress}
-            onChange={(e) => setSelectAddress(e.target.value)}
+            value={form.selectAddress}
+            onChange={handleChange}
           />
           <input
+            name="selectPLZ"
             type="text"
             placeholder="select a PLZ.."
-            value={selectPLZ}
-            onChange={(e) => setSelectPLZ(e.target.value)}
+            value={form.selectPLZ}
+            onChange={handleChange}
           />
 
-          <button onClick={handleSubmit}>Search</button>
+          <button>Search</button>
         </form>
       </div>
 

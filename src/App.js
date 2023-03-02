@@ -14,38 +14,47 @@ import { useNavigate } from "react-router-dom";
 
 function App() {
   const [backend, setBackend] = useState([]);
-  const [selectHandwerker, setSelectHandwerker] = useState("");
-  const [selectAddress, setSelectAddress] = useState("");
-  const [selectPLZ, setSelectPLZ] = useState("");
+  const [form, setForm] = useState({
+    selectHandwerker: "",
+    selectAddress: "",
+    selectPLZ: "",
+  });
+  const [searchResult, setSearchResult] = useState([]);
+  // const [selectHandwerker, setSelectHandwerker] = useState("");
+  // const [selectAddress, setSelectAddress] = useState("");
+  // const [selectPLZ, setSelectPLZ] = useState("");
 
   useEffect(() => {
     fetch("https://finalprojekt-backend.onrender.com/workers")
       .then((res) => res.json())
       .then((data) => setBackend(data))
       .catch((err) => console.log(err.message));
-  }, [selectAddress, selectHandwerker, selectPLZ]);
+  }, []);
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch(
-      `http://localhost:8080/workers?address=${selectAddress}&plz=${selectPLZ}&profession=${selectHandwerker}`
-    )
-      .then((res) => res.json())
-      .then((data) => setBackend(data))
-      .catch((err) => console.log(err));
-    
-  };
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home backend={backend} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              backend={backend}
+              form={form}
+              setForm={setForm}
+              setSearchResult={setSearchResult}
+            />
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/profil/created" element={<Created />} />
-        <Route path="/workers" element={<Workers backend={backend} />} />
+        <Route
+          path="/workers"
+          element={<Workers backend={backend} searchResult={searchResult} />}
+        />
         <Route
           path="/workers/:id"
           element={<WorkerDetails backend={backend} />}
