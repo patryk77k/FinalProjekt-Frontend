@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import AppBar from "./AppBar";
-import Photo from "./Photo";
+import Login from "./Login";
+import { Hero } from "./Hero";
 
-export default function Home({ backend, form, setForm, setSearchResult }) {
+export default function Home({ form, setForm, setSearchResult }) {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -31,28 +31,13 @@ export default function Home({ backend, form, setForm, setSearchResult }) {
 
   return (
     <div className="app">
-      <AppBar />
+      <Login />
+      <Hero />
 
       <h2>Home</h2>
-      <Photo />
+
       <div className="navlink">
-        <nav>
-          <p>
-            <NavLink to="login">Login</NavLink>
-          </p>
-          <p>
-            <NavLink to="sign-up">SignUp</NavLink>
-          </p>
-          <p>
-            <NavLink to="profil">Profil</NavLink>
-          </p>
-          <p>
-            <NavLink to="about-us">AboutUs</NavLink>
-          </p>
-          <p>
-            <NavLink to="contact">Contact</NavLink>
-          </p>
-        </nav>
+        <nav></nav>
       </div>
       <br />
       <div className="suchfeld">

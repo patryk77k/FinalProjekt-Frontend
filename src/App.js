@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
@@ -10,7 +11,6 @@ import Profil from "./components/Profil";
 import Workers from "./components/Workers";
 import WorkerDetails from "./components/WorkerDetails";
 import Created from "./components/Created";
-import { useNavigate } from "react-router-dom";
 
 function App() {
   const [backend, setBackend] = useState([]);
@@ -56,7 +56,10 @@ function App() {
           path="/workers/:id"
           element={<WorkerDetails backend={backend} />}
         />
-        <Route path="/workers/:id/date" element={<Date />} />
+        <Route
+          path="/workers/:id/date"
+          element={<Date backend={backend} searchResult={searchResult} />}
+        />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
 
