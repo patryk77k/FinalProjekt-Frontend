@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import { Hero } from "./Hero";
+import { Box, styled, Button } from "@mui/material";
+import Input from "@mui/joy/Input";
 
 export default function Home({ form, setForm, setSearchResult }) {
   const navigate = useNavigate();
@@ -29,44 +30,58 @@ export default function Home({ form, setForm, setSearchResult }) {
     });
   };
 
+  const StyledBox = styled(Box)({
+    display: "flex",
+    flexDirection: "rows",
+    justifyContent: "center",
+    gap: 20,
+  });
+
   return (
     <div className="app">
       <Login />
       <Hero />
 
-      <h2>Home</h2>
-
-      <div className="navlink">
-        <nav></nav>
-      </div>
-      <br />
-      <div className="suchfeld">
-        <form onSubmit={handleSubmit}>
-          <input
+      <form onSubmit={handleSubmit}>
+        <StyledBox pt={6}>
+          <Input
+            color="neutral"
+            disabled={false}
+            size="md"
+            variant="outlined"
             name="selectHandwerker"
             type="text"
             placeholder="select a handwerker.."
             value={form.selectHandwerker}
             onChange={handleChange}
           />
-          <input
+          <Input
             name="selectAddress"
+            color="neutral"
+            disabled={false}
+            size="md"
+            variant="outlined"
             type="text"
             placeholder="select a address.."
             value={form.selectAddress}
             onChange={handleChange}
           />
-          <input
+          <Input
+            color="neutral"
+            disabled={false}
+            size="md"
+            variant="outlined"
             name="selectPLZ"
             type="text"
             placeholder="select a PLZ.."
             value={form.selectPLZ}
             onChange={handleChange}
           />
-
+        </StyledBox>
+        <Box align="center" pt={6}>
           <button>Search</button>
-        </form>
-      </div>
+        </Box>
+      </form>
     </div>
   );
 }

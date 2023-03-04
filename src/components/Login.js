@@ -16,7 +16,7 @@ const Login = () => {
     { Name: "Register", cursor: "pointer" },
   ];
   return (
-    <AppBar position="static">
+    <AppBar position="static" >
       <StyledToolbar>
         <Box>
           <HandymanIcon />
