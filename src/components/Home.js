@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import { Hero } from "./Hero";
 import { Box, styled, Button } from "@mui/material";
 import Input from "@mui/joy/Input";
+
 
 export default function Home({ form, setForm, setSearchResult }) {
   const navigate = useNavigate();

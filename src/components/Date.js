@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Login from "./Login";
+import { Typography, Box } from "@mui/material";
 
 export default function Date({ backend }) {
   const { id } = useParams();
@@ -37,27 +39,29 @@ export default function Date({ backend }) {
 
   return (
     <div>
-      <h2>Vereinbare ein Termin</h2>
-      <h3>{thisHandwerker.availibility}</h3>
-      <form>
-        <input
-          name="gebuchte_termine"
-          type="text"
-          placeholder="choose a termin.."
-          value={createTermin.gebuchte_termine}
-          onChange={handleChange}
-        />
-        <button
-          onClick={(e) => {
-            handleClick(e);
-          }}
-        >
-          Select a termin
-        </button>
-      </form>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
+      <Login />
+      <Typography align="center" variant="h4" sx={{ fontWeight: 900 }}>
+        <h2>Hier kannst du Termin vereinbaren</h2>
+      </Typography>
+      <Box align="center">
+        <h3>{thisHandwerker.availibility}</h3>
+        <form>
+          <input
+            name="gebuchte_termine"
+            type="text"
+            placeholder="choose a termin.."
+            value={createTermin.gebuchte_termine}
+            onChange={handleChange}
+          />
+          <button
+            onClick={(e) => {
+              handleClick(e);
+            }}
+          >
+            Select a termin
+          </button>
+        </form>
+      </Box>
     </div>
   );
 }
