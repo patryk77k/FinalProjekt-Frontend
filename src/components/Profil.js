@@ -18,6 +18,7 @@ export default function Form() {
     price: "",
     address: "",
     plz: "",
+    city: "",
   });
 
   const handleChange = (e) => {
@@ -108,6 +109,13 @@ export default function Form() {
             type="text"
             placeholder="address"
             value={createWorker.address}
+            onChange={handleChange}
+          />
+          <input
+            name="city"
+            type="text"
+            placeholder="city"
+            value={createWorker.city}
             onChange={handleChange}
           />
           <button onClick={handleClick}>Create new</button>

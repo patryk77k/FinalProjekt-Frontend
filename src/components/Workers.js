@@ -4,13 +4,14 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
 import { Typography, Box, styled, IconButton, Stack } from "@mui/material";
-import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import avatar from "../static/avatar.jpg";
 import Login from "./Login";
+import Map from "./Map";
 
 export default function Workers({ searchResult }) {
   return (
     <div>
+      <Map />
       <Login />
       <Typography align="center" variant="h3" sx={{ fontWeight: 900 }}>
         Hier kannst du dein Handweker auswählen
