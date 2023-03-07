@@ -2,8 +2,11 @@ import React from "react";
 import { AppBar, Toolbar, styled, Box, Typography } from "@mui/material";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import { NavLink } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "@mui/base";
+import { Link } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
   const StyledToolbar = styled(Toolbar)({
     display: "flex",
     justifyContent: "space-between",
@@ -32,7 +35,11 @@ const Login = () => {
         ></MenuBox>
         <MenuBox>
           {MenuItems.map((item) => (
-            <Typography sx={{ cursor: "pointer" }}>{item.Name}</Typography>
+            <Typography sx={{ cursor: "pointer" }}>
+              <Link to="/profil" style={{ color: "white" }}>
+                {item.Name}
+              </Link>
+            </Typography>
           ))}
         </MenuBox>
       </StyledToolbar>

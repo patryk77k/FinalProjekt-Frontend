@@ -11,6 +11,7 @@ import Profil from "./components/Profil";
 import Workers from "./components/Workers";
 import WorkerDetails from "./components/WorkerDetails";
 import Created from "./components/Created";
+import Confirmation from "./components/Confirmation";
 
 function App() {
   const [backend, setBackend] = useState([]);
@@ -52,16 +53,14 @@ function App() {
           path="/workers"
           element={<Workers backend={backend} searchResult={searchResult} />}
         />
-        <Route
-          path="/workers/:id"
-          element={<WorkerDetails backend={backend} />}
-        />
+
         <Route
           path="/workers/:id/date"
           element={<Date backend={backend} searchResult={searchResult} />}
         />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/confirmation" element={<Confirmation />} />
 
         <Route />
       </Routes>

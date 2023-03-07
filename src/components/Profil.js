@@ -1,7 +1,13 @@
-import { useState} from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
+import Login from "./Login";
+import TextField from "@mui/material/TextField";
+import { Box } from "@mui/material";
+import Tischler from "../static/Tischler.jpg";
+
 
 // CREATE NEW HANDWERKER
 
@@ -37,90 +43,124 @@ export default function Form() {
   };
 
   return (
-    <dev>
+    <div>
+      <Login />
+      <Box
+        sx={{
+          backgroundImage: `url(${Tischler})`,
+          backgroundRepeat: "repeat",
+          backgroundColor: "black",
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          height: 500,
+          width: "100%",
+          display: "flex",
+          justifyContent: "left",
+        }}
+      ></Box>
       <nav>
-        <NavLink to="/">Home</NavLink>
         <form>
-          <input
-            name="first_name"
-            type="text"
-            placeholder="first name"
-            value={createWorker.first_name}
-            onChange={handleChange}
-          />
-          <input
-            name="last_name"
-            type="text"
-            placeholder="last name"
-            value={createWorker.last_name}
-            onChange={handleChange}
-          />
-          <input
-            name="login"
-            type="text"
-            placeholder="login"
-            value={createWorker.login}
-            onChange={handleChange}
-          />
-          <input
-            name="password"
-            type="text"
-            placeholder="password"
-            value={createWorker.password}
-            onChange={handleChange}
-          />
-          <input
-            name="profession"
-            type="text"
-            placeholder="profession"
-            value={createWorker.profession}
-            onChange={handleChange}
-          />
-          <input
-            name="experience"
-            type="text"
-            placeholder="experience"
-            value={createWorker.experience}
-            onChange={handleChange}
-          />
-          <input
-            name="availibility"
-            type="text"
-            placeholder="availibility"
-            value={createWorker.availibility}
-            onChange={handleChange}
-          />
-          <input
-            name="price"
-            type="text"
-            placeholder="price"
-            value={createWorker.price}
-            onChange={handleChange}
-          />
-          <input
-            name="plz"
-            type="text"
-            placeholder="plz"
-            value={createWorker.plz}
-            onChange={handleChange}
-          />
-          <input
-            name="address"
-            type="text"
-            placeholder="address"
-            value={createWorker.address}
-            onChange={handleChange}
-          />
-          <input
-            name="city"
-            type="text"
-            placeholder="city"
-            value={createWorker.city}
-            onChange={handleChange}
-          />
-          <button onClick={handleClick}>Create new</button>
+          <h2>
+            <center>Create your Handwerker Profil</center>
+          </h2>
+          <nav
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+              alignItems: "center",
+              gap: 5,
+            }}
+          >
+            <TextField
+              name="first_name"
+              type="text"
+              id="outlined-basic"
+              variant="outlined"
+              disabled={false}
+              size="md"
+              placeholder="First Name"
+              value={createWorker.first_name}
+              onChange={handleChange}
+            />
+            <TextField
+              name="last_name"
+              type="text"
+              placeholder="Last Name"
+              value={createWorker.last_name}
+              onChange={handleChange}
+            />
+            <TextField
+              name="login"
+              type="text"
+              placeholder="Login"
+              value={createWorker.login}
+              onChange={handleChange}
+            />
+            <TextField
+              name="password"
+              type="text"
+              placeholder="Password"
+              value={createWorker.password}
+              onChange={handleChange}
+            />
+            <TextField
+              name="profession"
+              type="text"
+              placeholder="Profession"
+              value={createWorker.profession}
+              onChange={handleChange}
+            />
+            <TextField
+              name="experience"
+              type="text"
+              placeholder="Experience"
+              value={createWorker.experience}
+              onChange={handleChange}
+            />
+            <TextField
+              name="availibility"
+              type="text"
+              placeholder="Availibility"
+              value={createWorker.availibility}
+              onChange={handleChange}
+            />
+            <TextField
+              name="price"
+              type="text"
+              placeholder="Price"
+              value={createWorker.price}
+              onChange={handleChange}
+            />
+            <TextField
+              name="plz"
+              type="text"
+              placeholder="PLZ"
+              value={createWorker.plz}
+              onChange={handleChange}
+            />
+            <TextField
+              name="address"
+              type="text"
+              placeholder="Address"
+              value={createWorker.address}
+              onChange={handleChange}
+            />
+            <TextField
+              name="city"
+              type="text"
+              placeholder="Stadt"
+              value={createWorker.city}
+              onChange={handleChange}
+            />
+            <button onClick={handleClick} style={{ marginBottom: 5 }}>
+              Create new!
+            </button>
+          </nav>
         </form>
       </nav>
-    </dev>
+      <Footer />
+    </div>
   );
 }
