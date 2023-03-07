@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "./style/Map.css";
 export default function Map() {
   return (

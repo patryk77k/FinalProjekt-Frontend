@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
-import { Hero } from "./Hero";
+import Hero from "./Hero";
 import { Box, styled, Button } from "@mui/material";
 import Input from "@mui/joy/Input";
-
+import Footer from "./Footer";
 
 export default function Home({ form, setForm, setSearchResult }) {
   const navigate = useNavigate();
@@ -83,6 +83,9 @@ export default function Home({ form, setForm, setSearchResult }) {
           <button>Search</button>
         </Box>
       </form>
+      <br />
+      <br />
+      <Footer />
     </div>
   );
 }

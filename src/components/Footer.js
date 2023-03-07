@@ -3,7 +3,7 @@ import { AppBar, Toolbar, styled, Box, Typography } from "@mui/material";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import { NavLink } from "react-router-dom";
 
-const Login = () => {
+const Footer = () => {
   const StyledToolbar = styled(Toolbar)({
     display: "flex",
     justifyContent: "space-between",
@@ -13,17 +13,18 @@ const Login = () => {
     gap: 20,
   });
   const MenuItems = [
-    { Name: "Login", cursor: "pointer" },
-    { Name: "Register", cursor: "pointer" },
+    { Name: "About us", cursor: "pointer" },
+    { Name: "Contact", cursor: "pointer" },
   ];
   return (
     <AppBar position="static">
       <StyledToolbar>
-        <Box>
+        <MenuBox>
           <NavLink to="/">
             <HandymanIcon />
           </NavLink>
-        </Box>
+        </MenuBox>
+
         <MenuBox
           sx={{
             cursor: "pointer",
@@ -40,4 +41,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Footer;
