@@ -65,7 +65,7 @@ export default function Workers({ searchResult }) {
                   >
                     {" "}
                     <Link
-                      to={`http://localhost:3000/workers/${handwerker._id}/date`}
+                      to={`http://finalprojekt-frontend.onrender.com/workers/${handwerker._id}/date`}
                     >
                       Select!
                     </Link>
