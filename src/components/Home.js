@@ -2,9 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Hero from "./Hero";
-import { Box, styled, Button } from "@mui/material";
-import Input from "@mui/joy/Input";
+import { Box, styled } from "@mui/material";
 import Footer from "./Footer";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 export default function Home({ form, setForm, setSearchResult }) {
   const navigate = useNavigate();
@@ -45,21 +46,20 @@ export default function Home({ form, setForm, setSearchResult }) {
 
       <form onSubmit={handleSubmit}>
         <StyledBox pt={6}>
-          <Input
-            color="neutral"
+          <TextField
+            id="outlined-basic"
+            variant="outlined"
             disabled={false}
             size="md"
-            variant="outlined"
             name="selectHandwerker"
             type="text"
             placeholder="select a handwerker.."
             value={form.selectHandwerker}
             onChange={handleChange}
           />
-          <Input
+          <TextField
+            id="outlined-basic"
             name="selectAddress"
-            color="neutral"
-            disabled={false}
             size="md"
             variant="outlined"
             type="text"
@@ -67,8 +67,8 @@ export default function Home({ form, setForm, setSearchResult }) {
             value={form.selectAddress}
             onChange={handleChange}
           />
-          <Input
-            color="neutral"
+          <TextField
+            id="outlined-basic"
             disabled={false}
             size="md"
             variant="outlined"

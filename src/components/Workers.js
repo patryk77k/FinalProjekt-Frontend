@@ -7,12 +7,14 @@ import { Typography, Box, styled, IconButton, Stack } from "@mui/material";
 import avatar from "../static/avatar.jpg";
 import Login from "./Login";
 import Map from "./Map";
-
+import Footer from "./Footer";
 export default function Workers({ searchResult }) {
   return (
     <div>
-      <Map />
       <Login />
+      <br />
+      <Map />
+      <br />
       <Typography align="center" variant="h3" sx={{ fontWeight: 900 }}>
         Hier kannst du dein Handweker auswählen
       </Typography>
@@ -73,11 +75,7 @@ export default function Workers({ searchResult }) {
             </div>
           ))}
       </Stack>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <br />
-        <NavLink to="/workers/:id">WorkerDetails</NavLink>
-      </nav>
+      <Footer />
     </div>
   );
 }
