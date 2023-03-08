@@ -4,9 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Login from "./Login";
 import { Typography, Box } from "@mui/material";
-import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
-import Confirmation from "./Confirmation";
 
 export default function Date({ backend }) {
   const navigate = useNavigate();
@@ -52,7 +50,7 @@ export default function Date({ backend }) {
             <Link
               to={"/"}
               onClick={(e) => {
-                navigate("/confirmation");
+                // navigate("/confirmation");
                 handleClick(e);
               }}
             >

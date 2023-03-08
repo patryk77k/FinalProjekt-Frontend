@@ -1,14 +1,26 @@
-import { NavLink, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
-import { Typography, Box, styled, IconButton, Stack } from "@mui/material";
+import { Typography, Box, Stack } from "@mui/material";
 import avatar from "../static/avatar.jpg";
 import Login from "./Login";
 import Map from "./Map";
 import Footer from "./Footer";
 export default function Workers({ searchResult }) {
+  const [url, setUrl] = useState("http://localhost:3000");
+
+  useEffect(() => {
+    return () => {
+      console.log(window.location)
+      if (window.location.host !== "localhost:3000") {
+        setUrl("https://finalprojekt-frontend.onrender.com");
+      }
+    };
+  }, []);
+
   return (
     <div>
       <Login />
@@ -64,9 +76,7 @@ export default function Workers({ searchResult }) {
                     sx={{ ml: "auto", fontWeight: 600 }}
                   >
                     {" "}
-                    <Link
-                      to={`http://finalprojekt-frontend.onrender.com/workers/${handwerker._id}/date`}
-                    >
+                    <Link to={`${url}/workers/${handwerker._id}/date`}>
                       Select!
                     </Link>
                   </Button>

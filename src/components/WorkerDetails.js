@@ -17,9 +17,9 @@ export default function WorkerDetails({ backend }) {
       <nav></nav>
       <div>
         {" "}
-        <NavLink to={`http://localhost:3000/workers/${id}/date`}>
+        {/* <NavLink to={`http://localhost:3000/workers/${id}/date`}>
           {thisHandwerker.first_name}
-        </NavLink>
+        </NavLink> */}
       </div>
     </div>
   );

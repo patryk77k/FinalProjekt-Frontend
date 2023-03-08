@@ -9,7 +9,6 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Profil from "./components/Profil";
 import Workers from "./components/Workers";
-import WorkerDetails from "./components/WorkerDetails";
 import Created from "./components/Created";
 import Confirmation from "./components/Confirmation";
 
